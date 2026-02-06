@@ -2,9 +2,13 @@
 
 const populationSpans = Array.from(document.querySelectorAll('.population'));
 
-const populationNumbers = populationSpans.map((el) => {
-  return Number(el.textContent.replaceAll(',', ''));
-});
+const populationNumbers = populationSpans
+  .map((el) => {
+    return Number(el.textContent.replaceAll(',', ''));
+  })
+  .filter((num) => {
+    return !isNaN(num);
+  });
 
 const total = populationNumbers.reduce((sum, current) => sum + current, 0);
 const average = total / populationNumbers.length;
